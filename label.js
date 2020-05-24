@@ -32,11 +32,13 @@ async function label() {
   console.log(updatedIssueInformation);
 
   if (team) {
-    const org = team.split("/").shift();
+    const teamArr = team.split("/")
+    const org = teamArr.shift();
+    const teamSlug = teamArr.pop();
     console.log(`org: ${org}`);
     const teamMembers = await octokit.teams.listMembersInOrg({
       org: org,
-      team_slug: team
+      team_slug: teamSlug
     });
     const logins = teamMembers.data.map(member => member.login);
     console.log(logins);
