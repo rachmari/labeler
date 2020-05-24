@@ -37,10 +37,7 @@ async function label() {
     const teamSlug = teamArr.pop();
     console.log(`org: ${org}`);
     console.log(`teamSlug: ${teamSlug}`)
-    const teamMembers = await octokit.teams.listMembersInOrg({
-      org: org,
-      team_slug: teamSlug,
-    });
+    const teamMembers = await octokit.request(`/orgs/${org}/teams/${teamSlug}/members`);
     const logins = teamMembers.data.map(member => member.login);
     console.log(logins);
     for (let login of logins) {
