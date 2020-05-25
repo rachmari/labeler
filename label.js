@@ -19,13 +19,12 @@ async function label() {
   const context = github.context;
   const repoName = context.payload.repository.name;
   const ownerName = context.payload.repository.owner.login;
-  const issueNumber;
+  let issueNumber;
   if (context.payload.event_name === 'issues') {
     issueNumber = context.event.issue.number;
   } else {
     issueNumber = context.event.number;
   }
-  
   const team = core.getInput("team");
 
   // query for the most recent information about the issue. Between the issue being created and
