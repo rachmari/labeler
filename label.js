@@ -20,7 +20,9 @@ async function label() {
   const repoName = context.payload.repository.name;
   const ownerName = context.payload.repository.owner.login;
   let issueNumber;
-  if (context.event_name === 'issues') {
+  console.log(context.event_name)
+  console.log(context.payload)
+  if (context.event_name == 'issues') {
     issueNumber = context.payload.issue.number;
   } else {
     issueNumber = context.payload.number;
