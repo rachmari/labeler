@@ -16,11 +16,16 @@ async function label() {
   const ignoreIfAssigned = core.getInput("ignore-if-assigned");
   const ignoreIfLabeled = core.getInput("ignore-if-labeled");
   const octokit = new github.GitHub(myToken);
-  console.log(context.payload)
   const context = github.context;
   const repoName = context.payload.repository.name;
   const ownerName = context.payload.repository.owner.login;
-  const issueNumber = context.payload.issue.number;
+  const issueNumber;
+  if (context.payload.event_name === 'issues') {
+    issueNumber = context.event.issue.number;
+  } else {
+    issueNumber = context.event.number;
+  }
+  
   const team = core.getInput("team");
 
   // query for the most recent information about the issue. Between the issue being created and
