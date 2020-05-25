@@ -20,10 +20,10 @@ async function label() {
   const repoName = context.payload.repository.name;
   const ownerName = context.payload.repository.owner.login;
   let issueNumber;
-  if (context.payload.event_name === 'issues') {
-    issueNumber = context.event.issue.number;
+  if (context.event_name === 'issues') {
+    issueNumber = context.payload.issue.number;
   } else {
-    issueNumber = context.event.number;
+    issueNumber = context.payload.number;
   }
   const team = core.getInput("team");
 
