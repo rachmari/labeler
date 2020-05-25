@@ -20,7 +20,7 @@ async function label() {
   const repoName = context.payload.repository.name;
   const ownerName = context.payload.repository.owner.login;
   let issueNumber;
-  if (context.eventName == 'issues') {
+  if (context.eventName === "issues") {
     issueNumber = context.payload.issue.number;
   } else {
     issueNumber = context.payload.number;
@@ -29,17 +29,19 @@ async function label() {
 
   // query for the most recent information about the issue. Between the issue being created and
   // the action running, labels or asignees could have been added
-  let updatedIssueInformation = await octokit.issues.get({
+  const updatedIssueInformation = await octokit.issues.get({
     owner: ownerName,
     repo: repoName,
     issue_number: issueNumber
   });
 
   if (team) {
-    const teamArr = team.split("/")
+    const teamArr = team.split("/");
     const org = teamArr.shift();
     const teamSlug = teamArr.pop();
-    const teamMembers = await octokit.request(`/orgs/${org}/teams/${teamSlug}/members`);
+    const teamMembers = await octokit.request(
+      `/orgs/${org}/teams/${teamSlug}/members`
+    );
     const logins = teamMembers.data.map(member => member.login);
     for (let login of logins) {
       if (login === updatedIssueInformation.data.user.login) {
