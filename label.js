@@ -23,7 +23,7 @@ async function label() {
   console.log(github)
   console.log(context)
   console.log(context.payload)
-  if (context.event_name == 'issues') {
+  if (context.eventName == 'issues') {
     issueNumber = context.payload.issue.number;
   } else {
     issueNumber = context.payload.number;
