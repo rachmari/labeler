@@ -20,9 +20,6 @@ async function label() {
   const repoName = context.payload.repository.name;
   const ownerName = context.payload.repository.owner.login;
   let issueNumber;
-  console.log(github)
-  console.log(context)
-  console.log(context.payload)
   if (context.eventName == 'issues') {
     issueNumber = context.payload.issue.number;
   } else {
@@ -37,19 +34,14 @@ async function label() {
     repo: repoName,
     issue_number: issueNumber
   });
-  console.log(updatedIssueInformation);
 
   if (team) {
     const teamArr = team.split("/")
     const org = teamArr.shift();
     const teamSlug = teamArr.pop();
-    console.log(`org: ${org}`);
-    console.log(`teamSlug: ${teamSlug}`)
     const teamMembers = await octokit.request(`/orgs/${org}/teams/${teamSlug}/members`);
     const logins = teamMembers.data.map(member => member.login);
-    console.log(logins);
     for (let login of logins) {
-      console.log(`login: ${login}`);
       if (login === updatedIssueInformation.data.user.login) {
         return `No action being taken. Ignoring because the author of the issue or pull request is part of the ${team} team`;
       }
