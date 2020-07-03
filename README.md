@@ -30,7 +30,7 @@ This action can also be used to remove labels from an issue. Just pass the label
         ignore-if-assigned: false
 ```
 
-An example use-case would be, to remove the `help-wanted` label when an issue is assigned to someone. For this, the workflow file would look like:
+For example, you can remove the `help-wanted` label when an issue is assigned to someone. For this, the workflow file would look like:
 
 ```yml
 on:
