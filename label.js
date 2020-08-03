@@ -35,7 +35,7 @@ async function label() {
     issue_number: issueNumber
   });
 
-  if (team && context.eventName === "pull_request") {
+  if (team) {
     const teamArr = team.split("/");
     const org = teamArr.shift();
     const teamSlug = teamArr.pop();
