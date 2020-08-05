@@ -7,6 +7,7 @@ const labelsToAdd = core
   .map(x => x.trim());
 
 console.log(`Initial labels to add: ${labelsToAdd}`)
+console.log(typeof labelsToAdd)
 
 const labelsToRemove = core
   .getInput("remove-labels")
@@ -67,10 +68,7 @@ async function label() {
     }
   }
 
-  console.log(`Label var init: ${labels}`)
-
   for (let labelToAdd of labelsToAdd) {
-    console.log(`Label loop val: ${labelToAdd}`)
     if (!labels.includes(labelToAdd)) {
       labels.push(labelToAdd);
     }
