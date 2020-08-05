@@ -7,7 +7,7 @@ const labelsToAdd = core
   .map(x => x.trim());
 
 console.log(`Initial labels to add: ${labelsToAdd}`)
-console.log(typeof labelsToAdd)
+console.log(`Type: ${typeof labelsToAdd}`)
 
 const labelsToRemove = core
   .getInput("remove-labels")
