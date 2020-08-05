@@ -63,13 +63,14 @@ async function label() {
   let labels = updatedIssueInformation.data.labels.map(label => label.name);
   if (ignoreIfLabeled) {
     if (labels.length !== 0) {
-      return "No action being taken. Ignoring because one or labels have been added to the issue";
+      return "No action being taken. Ignoring because one or more labels have been added to the issue";
     }
   }
 
   console.log(`Label var init: ${labels}`)
 
   for (let labelToAdd of labelsToAdd) {
+    console.log(`Label loop val: ${labelToAdd}`)
     if (!labels.includes(labelToAdd)) {
       labels.push(labelToAdd);
     }
