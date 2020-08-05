@@ -67,6 +67,8 @@ async function label() {
     }
   }
 
+  console.log(`Label var init: ${labels}`)
+
   for (let labelToAdd of labelsToAdd) {
     if (!labels.includes(labelToAdd)) {
       labels.push(labelToAdd);
