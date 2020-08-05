@@ -1,11 +1,10 @@
 const github = require("@actions/github");
 const core = require("@actions/core");
 
-let labelsToAdd = core.getInput("add-labels")
-console.log(`Type: ${typeof labelsToAdd} ${labelsToAdd}`)
-labelsToAdd = labelsToAdd.split(",").map(x => x.trim());
-
-console.log(`Initial labels to add: ${labelsToAdd}`)
+const labelsToAdd = core
+  .getInput("add-labels")
+  .split(",")
+  .map(x => x.trim());
 
 const labelsToRemove = core
   .getInput("remove-labels")
@@ -67,8 +66,7 @@ async function label() {
   }
 
   for (let labelToAdd of labelsToAdd) {
-    console.log(`Label loop val: ${labelToAdd}`)
-    if (!labels.includes(labelToAdd)) {
+    if (!labels.includes(labelToAdd) && labelToAdd !== "") {
       labels.push(labelToAdd);
     }
   }
