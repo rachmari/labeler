@@ -68,11 +68,11 @@ async function label() {
     }
   }
 
-  for (let labelToAdd of labelsToAdd) {
+  labelsToAdd.forEach( labelToAdd => {
     if (!labels.includes(labelToAdd)) {
       labels.push(labelToAdd);
     }
-  }
+  })
 
   console.log(`Add labels: ${labels}`)
   labels = labels.filter(value => {
