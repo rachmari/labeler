@@ -6,10 +6,13 @@ const labelsToAdd = core
   .split(",")
   .map(x => x.trim());
 
+console.log(`Initial labels to add: ${labelsToAdd}`)
+
 const labelsToRemove = core
   .getInput("remove-labels")
   .split(",")
   .map(x => x.trim());
+console.log(`Initial labels to remove: ${labelsToRemove}`)
 
 async function label() {
   const myToken = core.getInput("repo-token");
@@ -69,10 +72,12 @@ async function label() {
       labels.push(labelToAdd);
     }
   }
+
+  console.log(`Add labels: ${labels}`)
   labels = labels.filter(value => {
     return !labelsToRemove.includes(value);
   });
-
+  console.log(`After remove labels: ${labels}`)
   await octokit.issues.update({
     owner: ownerName,
     repo: repoName,
