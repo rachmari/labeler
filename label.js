@@ -72,9 +72,7 @@ async function label() {
   }
 
   console.log(`Add labels: ${labels}`)
-  labels = labels.filter(value => {
-    return !labelsToRemove.includes(value);
-  });
+  labels = labels.filter(value => !labelsToRemove.includes(value));
   console.log(`After remove labels: ${labels}`)
   await octokit.issues.update({
     owner: ownerName,
